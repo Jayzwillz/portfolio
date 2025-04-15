@@ -77,7 +77,7 @@ const Hero = () => {
         {/* Buttons */}
         <div className="flex justify-center md:justify-start gap-4 mt-8 flex-wrap">
           <a
-            href="../../public/Jayzwillz.pdf"
+            href="/public/Jayzwillz.pdf"
             target="_blank"
             className="px-6 py-3 bg-gray-800 text-white rounded-full hover:bg-gray-700 flex items-center gap-2 transition-all duration-300"
           >
