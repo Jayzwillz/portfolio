@@ -7,19 +7,18 @@ import "swiper/css/pagination";
 
 const testimonials = [
   {
-    quote: "Jah’swill brought our vision to life with seamless execution and top-tier UI work. His attention to detail is unmatched!",
-    name: "Emily Chen",
-    title: "Product Manager",
+    quote:
+      "One of the things I admire most about Jah'swill is his unwavering commitment to growth and excellence. No matter the complexity or how new a task might be, he never backs down. Instead, he dives into research, asks the right questions, and delivers every project with quality and precision. His dedication to learning, not just independently but also by absorbing knowledge from those around him — including myself — is truly inspiring. Working with him has been a rewarding experience, and I have no doubt he’ll continue to do great things wherever he goes.",
+    name: "Samuel Abraham",
+    title: "Front-End Engineer Student, AltSchool Africa",
+    image: "/public/Samuel Abraham.jpeg",
   },
   {
-    quote: "Reliable, innovative, and collaborative. Jah’swill is a key asset on any project that values quality frontend craftsmanship.",
-    name: "Samuel Brooks",
-    title: "CTO, NovaTech",
-  },
-  {
-    quote: "We saw major improvements in our platform after working with Jah’swill — highly recommend him for frontend-heavy projects.",
-    name: "Aisha Rahman",
-    title: "Founder, CodeSphere",
+    quote:
+      "Working with Jah'swill on our frontend project was a great experience. His attention to detail, clean code, and problem-solving mindset really stood out. He's not just a great developer, but also an awesome team player who’s always open to collaboration and new ideas.",
+    name: "Samson Moradeyo",
+    title: "Front-End Engineer Student, AltSchool Africa",
+    image: "/public/Psalmotee.jpg",
   },
 ];
 
@@ -55,9 +54,18 @@ const Testimonial = () => {
                 transition={{ duration: 0.5, ease: "easeInOut" }}
                 viewport={{ once: true }}
               >
-                <p className="text-lg italic text-gray-300">“{testimonial.quote}”</p>
+                <img
+                  src={testimonial.image}
+                  alt={testimonial.name}
+                  className="w-20 h-20 rounded-full mx-auto object-cover border-4 border-purple-500 shadow-md"
+                />
+                <p className="text-lg italic text-gray-300">
+                  “{testimonial.quote}”
+                </p>
                 <div className="space-y-1">
-                  <h4 className="font-semibold text-white">{testimonial.name}</h4>
+                  <h4 className="font-semibold text-white">
+                    {testimonial.name}
+                  </h4>
                   <p className="text-sm text-gray-400">{testimonial.title}</p>
                 </div>
               </motion.div>
