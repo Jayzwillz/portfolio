@@ -1,10 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
-import aboutImg from "../assets/images/Tablet Background.jpg";
+import aboutImg from "/AboutImg.jpg";
 
 const About = () => {
   return (
-    <section id="about" className="py-24 bg-[#1a1a2e] text-white relative overflow-hidden">
+    <article id="about" className="py-24 bg-[#1a1a2e] text-white relative overflow-hidden">
       <div className="absolute -top-20 left-[-10%] w-[300px] h-[300px] bg-indigo-600 opacity-10 rounded-full blur-[120px]" />
       <div className="absolute bottom-[-20%] right-[-10%] w-[400px] h-[400px] bg-pink-600 opacity-10 rounded-full blur-[180px]" />
 
@@ -45,14 +45,14 @@ const About = () => {
             <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden shadow-xl border-4 border-purple-600">
               <img
                 src={aboutImg}
-                alt="Jah'swill"
+                alt="Portrait of Jah'swill Uchechi Emmanuel, Front-End Developer"
                 className="object-cover w-full h-full"
               />
             </div>
           </motion.div>
         </div>
       </div>
-    </section>
+    </article>
   );
 };
 

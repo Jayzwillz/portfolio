@@ -2,7 +2,7 @@
 import React from "react";
 import { motion, useInView, useAnimation } from "framer-motion";
 import { useEffect, useRef } from "react";
-import profileImg from "../assets/images/image.png";
+import profileImg from "/HeroImg.png";
 import { FaEnvelope, FaDownload } from "react-icons/fa";
 
 const StatCounter = ({ value, label }) => {
@@ -35,7 +35,7 @@ const StatCounter = ({ value, label }) => {
 
 const Hero = () => {
   return (
-    <section
+    <header
       id="hero"
       className="relative min-h-screen flex flex-col-reverse md:flex-row items-center justify-between px-6 md:px-12 bg-[#0f0c29] text-white overflow-hidden"
     >
@@ -103,12 +103,12 @@ const Hero = () => {
         <div className="relative w-52 h-52 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full overflow-hidden shadow-2xl border-4 border-blue-600">
           <img
             src={profileImg}
-            alt="Jah'swill"
+            alt="Portrait of Jah'swill Uchechi Emmanuel, Front-End Developer"
             className="object-cover w-full h-full"
           />
         </div>
       </motion.div>
-    </section>
+    </header>
   );
 };
 

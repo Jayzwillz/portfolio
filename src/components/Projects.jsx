@@ -3,17 +3,17 @@ import { motion } from "framer-motion";
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 
 // Import images (replace others as needed)
-import xzmovies from "../../public/XZMovies.png";
-import authApp from "../../public/React Authentication.png";
-import leadTracker from "../../public/Lead Tracker.png";
-import formerPortfolio from "../../public/Former Portfolio.png";
-import unitConverter from "../../public/Unit Converter.png";
-import passwordGenerator from "../../public/Password Generator.png";
-import quizApp from "../../public/Quiz App.png";
-import colorGame from "../../public/Color Game.png";
-import weatherApp from "../../public/Weather App.png";
-import carousel from "../../public/Carousel.png";
-import todoApp from "../../public/Todo App.png";
+import xzmovies from "/XZMovies.png";
+import authApp from "/React Authentication.png";
+import leadTracker from "/Lead Tracker.png";
+import formerPortfolio from "/Former Portfolio.png";
+import unitConverter from "/Unit Converter.png";
+import passwordGenerator from "/Password Generator.png";
+import quizApp from "/Quiz App.png";
+import colorGame from "/Color Game.png";
+import weatherApp from "/Weather App.png";
+import carousel from "/Carousel.png";
+import todoApp from "/Todo App.png";
 
 const projects = [
   {
