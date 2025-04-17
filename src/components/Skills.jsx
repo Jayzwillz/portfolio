@@ -22,37 +22,42 @@ const skills = [
 
 const Skills = () => {
   return (
-    <section id="skills" className="py-20 bg-gray-950 text-white">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <motion.h2
-          className="text-3xl sm:text-4xl font-extrabold text-center text-purple-400 mb-12"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          My Skills
-        </motion.h2>
+    <section id="skills" aria-labelledby="skills-heading" className="py-20 bg-gray-950 text-white">
+  <div className="max-w-7xl mx-auto px-6 md:px-12">
+    <motion.h2
+      id="skills-heading"
+      className="text-3xl sm:text-4xl font-extrabold text-center text-purple-400 mb-12"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+    >
+      My Skills
+    </motion.h2>
 
-        <motion.div
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 text-center"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          viewport={{ once: true }}
+    <motion.div
+      className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 text-center"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1 }}
+      viewport={{ once: true }}
+    >
+      {skills.map((skill, index) => (
+        <article
+          key={index}
+          className="bg-gray-800 hover:bg-gray-700 p-6 rounded-xl shadow-md transition-all duration-300 flex flex-col items-center gap-3"
+          aria-label={skill.name}
         >
-          {skills.map((skill, index) => (
-            <div
-              key={index}
-              className="bg-gray-800 hover:bg-gray-700 p-6 rounded-xl shadow-md transition-all duration-300 flex flex-col items-center gap-3"
-            >
-              <div className="text-4xl">{skill.icon}</div>
-              <p className="text-lg font-medium">{skill.name}</p>
-            </div>
-          ))}
-        </motion.div>
-      </div>
-    </section>
+          <div className="text-4xl" aria-hidden="true">
+            {skill.icon}
+          </div>
+          <h3 className="text-lg font-medium">{skill.name}</h3>
+        </article>
+      ))}
+    </motion.div>
+  </div>
+</section>
+
   );
 };
 

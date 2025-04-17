@@ -119,76 +119,73 @@ const projects = [
 
 const Projects = () => {
   return (
-    <section id="projects" className="py-20 bg-gray-950 text-white">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-center text-purple-400 mb-12">
-          My Projects
-        </h2>
+    <section id="projects" aria-labelledby="projects-heading" className="py-20 bg-gray-950 text-white">
+  <div className="max-w-7xl mx-auto px-6 md:px-12">
+    <h2 id="projects-heading" className="text-3xl sm:text-4xl font-extrabold text-center text-purple-400 mb-12">
+      My Projects
+    </h2>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: index * 0.1 }}
-              className="flex flex-col bg-gray-900 rounded-lg shadow-lg overflow-hidden hover:scale-[1.015] transition-transform duration-300"
-            >
-              <img
-                src={
-                  typeof project.image === "string"
-                    ? project.image
-                    : project.image?.src
-                }
-                alt={project.title}
-                className="w-full h-48 object-cover object-center"
-                loading="lazy"
-              />
-              <div className="flex flex-col justify-between flex-grow p-6 space-y-4">
-                <div>
-                  <h3 className="text-xl font-semibold text-purple-300">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-300 text-sm mt-2 min-h-[3.5rem]">
-                    {project.description}
-                  </p>
-                  <ul className="flex flex-wrap gap-2 text-xs text-gray-400 mt-4">
-                    {project.tech.map((tech, i) => (
-                      <li
-                        key={i}
-                        className="bg-gray-800 px-2 py-1 rounded-full border border-purple-500"
-                      >
-                        {tech}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+      {projects.map((project, index) => (
+        <motion.article
+          key={index}
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: index * 0.1 }}
+          className="flex flex-col bg-gray-900 rounded-lg shadow-lg overflow-hidden hover:scale-[1.015] transition-transform duration-300"
+          aria-labelledby={`project-title-${index}`}
+        >
+          <img
+            src={project.image}
+            alt={`${project.title} preview`}
+            className="w-full h-48 object-cover object-center"
+            loading="lazy"
+          />
 
-                <div className="flex flex-wrap gap-4 pt-6">
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-purple-600 rounded hover:bg-purple-700 transition"
-                  >
-                    Live Demo <FaExternalLinkAlt size={14} />
-                  </a>
-                  <a
-                    href={project.repo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-gray-700 rounded hover:bg-gray-600 transition"
-                  >
-                    GitHub <FaGithub size={16} />
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
+          <div className="flex flex-col justify-between flex-grow p-6 space-y-4">
+            <div>
+              <h3 id={`project-title-${index}`} className="text-xl font-semibold text-purple-300">
+                {project.title}
+              </h3>
+              <p className="text-gray-300 text-sm mt-2 min-h-[3.5rem]">{project.description}</p>
+
+              <ul className="flex flex-wrap gap-2 text-xs text-gray-400 mt-4" aria-label="Technologies used">
+                {project.tech.map((tech, i) => (
+                  <li key={i} className="bg-gray-800 px-2 py-1 rounded-full border border-purple-500">
+                    {tech}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="flex flex-wrap gap-4 pt-6">
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Live demo of ${project.title}`}
+                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-purple-600 rounded hover:bg-purple-700 transition"
+              >
+                Live Demo <FaExternalLinkAlt size={14} />
+              </a>
+              <a
+                href={project.repo}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`GitHub repository of ${project.title}`}
+                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-gray-700 rounded hover:bg-gray-600 transition"
+              >
+                GitHub <FaGithub size={16} />
+              </a>
+            </div>
+          </div>
+        </motion.article>
+      ))}
+    </div>
+  </div>
+</section>
+
   );
 };
 
