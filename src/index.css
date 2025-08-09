@@ -1,10 +1,15 @@
 @import "tailwindcss";
 
+:root {
+  --base-font-size: 16px;
+  font-size: var(--base-font-size);
+}
+
 html {
     scroll-behavior: smooth;
   }
   
-
+  /* Custom Animations */
   @keyframes pulse-fast {
     0%, 100% {
       opacity: 0.3;
@@ -16,7 +21,218 @@ html {
     }
   }
   
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes bounce-subtle {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-5px);
+    }
+    60% {
+      transform: translateY(-3px);
+    }
+  }
+  
   .animate-pulse-fast {
     animation: pulse-fast 6s ease-in-out infinite;
   }
-  
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.6s ease-out;
+  }
+
+  .animate-bounce-subtle {
+    animation: bounce-subtle 2s infinite;
+  }
+
+  /* Accessibility - Reduced Motion */
+  .reduced-motion * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  /* High Contrast Mode */
+  .high-contrast {
+    filter: contrast(150%);
+  }
+
+  .high-contrast * {
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
+  }
+
+  /* Theme Variables - Updated for comprehensive theme support */
+  [data-theme="light"] {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f9fafb;
+    --bg-surface: #f8fafc;
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --color-primary: #8b5cf6;
+    --color-secondary: #6366f1;
+    --color-accent: #d946ef;
+  }
+
+  [data-theme="dark"] {
+    --bg-primary: #000000;
+    --bg-secondary: #1f2937;
+    --bg-surface: #1a1a2e;
+    --text-primary: #ffffff;
+    --text-secondary: #d1d5db;
+    --color-primary: #8b5cf6;
+    --color-secondary: #6366f1;
+    --color-accent: #d946ef;
+  }
+
+  [data-theme="cyberpunk"] {
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #1a0d1a;
+    --bg-surface: #1a0d1a;
+    --text-primary: #ffffff;
+    --text-secondary: #ff0080;
+    --color-primary: #ff0080;
+    --color-secondary: #00ffff;
+    --color-accent: #ffff00;
+  }
+
+  [data-theme="ocean"] {
+    --bg-primary: #0f172a;
+    --bg-secondary: #164e63;
+    --bg-surface: #1e293b;
+    --text-primary: #ffffff;
+    --text-secondary: #bae6fd;
+    --color-primary: #0ea5e9;
+    --color-secondary: #0284c7;
+    --color-accent: #06b6d4;
+  }
+
+  [data-theme="forest"] {
+    --bg-primary: #0f172a;
+    --bg-secondary: #14532d;
+    --bg-surface: #1e293b;
+    --text-primary: #ffffff;
+    --text-secondary: #bbf7d0;
+    --color-primary: #22c55e;
+    --color-secondary: #16a34a;
+    --color-accent: #84cc16;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #1f2937;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #6366f1;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #4f46e5;
+  }
+
+  /* Focus styles for accessibility */
+  .focus-visible {
+    outline: 2px solid #6366f1;
+    outline-offset: 2px;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Portrait image containers */
+  .portrait-container {
+    aspect-ratio: 3/4;
+    min-height: 300px;
+  }
+
+  @media (max-width: 768px) {
+    .portrait-container {
+      aspect-ratio: 4/5;
+      min-height: 280px;
+    }
+  }
+
+  /* Cursor trail hiding for touch devices */
+  @media (hover: none) and (pointer: coarse) {
+    #cursor-trail {
+      display: none;
+    }
+  }
+
+  /* Smooth transitions for theme changes */
+  * {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+
+  /* Override default cursor for better custom cursor visibility */
+  @media (min-width: 1024px) {
+    body {
+      cursor: none;
+    }
+    
+    a, button, [role="button"] {
+      cursor: none;
+    }
+    
+    /* Hover states for interactive elements */
+    a:hover, button:hover, [role="button"]:hover {
+      transform: scale(1.02);
+      transition: transform 0.2s ease;
+    }
+  }
+
+  /* Custom cursor trail styles */
+  .cursor-trail-dot {
+    backdrop-filter: blur(1px);
+    mix-blend-mode: difference;
+  }
+
+  .cursor-ring {
+    backdrop-filter: blur(2px);
+    mix-blend-mode: screen;
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .cursor-trail-dot,
+    .cursor-ring {
+      mix-blend-mode: normal;
+      filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.8));
+    }
+  }
