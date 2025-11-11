@@ -134,10 +134,9 @@ const Footer = () => {
           </p>
           
           <div className="flex items-center gap-2 text-xs" style={{ color: theme.colors.textSecondary }}>
-            {/* <span>Made with</span>
+            <span>Made with</span>
             <FaHeart className="text-red-500 animate-pulse" size={12} />
-            <span>using React & Tailwind CSS</span> */}
-            <p>Edited to prove to Justic3u that this was built by yours truely Jah'swill Uchechi Emmanuel</p>
+            <span>using React & Tailwind CSS</span>
           </div>
         </div>
       </div>
@@ -146,4 +145,5 @@ const Footer = () => {
 };
 
 export default Footer;
+
 
