@@ -1,238 +1,151 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap");
 @import "tailwindcss";
 
 :root {
   --base-font-size: 16px;
+  --bg-grid-color: rgba(255, 255, 255, 0.08);
   font-size: var(--base-font-size);
 }
 
 html {
-    scroll-behavior: smooth;
-  }
-  
-  /* Custom Animations */
-  @keyframes pulse-fast {
-    0%, 100% {
-      opacity: 0.3;
-      transform: scale(1);
-    }
-    50% {
-      opacity: 0.6;
-      transform: scale(1.05);
-    }
-  }
-  
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+  scroll-behavior: smooth;
+}
 
-  @keyframes slideInRight {
-    from {
-      opacity: 0;
-      transform: translateX(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
+body {
+  font-family: "Manrope", system-ui, sans-serif;
+  line-height: 1.6;
+}
 
-  @keyframes bounce-subtle {
-    0%, 20%, 50%, 80%, 100% {
-      transform: translateY(0);
-    }
-    40% {
-      transform: translateY(-5px);
-    }
-    60% {
-      transform: translateY(-3px);
-    }
-  }
-  
-  .animate-pulse-fast {
-    animation: pulse-fast 6s ease-in-out infinite;
-  }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Sora", "Manrope", system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
 
-  .animate-fade-in-up {
-    animation: fadeInUp 0.6s ease-out;
-  }
+main {
+  position: relative;
+}
 
-  .animate-slide-in-right {
-    animation: slideInRight 0.6s ease-out;
-  }
+main::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(circle at 12% 18%, color-mix(in srgb, var(--color-primary) 30%, transparent), transparent 34%),
+    radial-gradient(circle at 88% 84%, color-mix(in srgb, var(--color-accent) 25%, transparent), transparent 30%),
+    linear-gradient(180deg, var(--color-background) 0%, color-mix(in srgb, var(--color-background) 82%, black) 100%);
+}
 
-  .animate-bounce-subtle {
-    animation: bounce-subtle 2s infinite;
-  }
+main::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(to right, var(--bg-grid-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--bg-grid-color) 1px, transparent 1px);
+  background-size: 34px 34px;
+  opacity: 0.18;
+  pointer-events: none;
+}
 
-  /* Accessibility - Reduced Motion */
-  .reduced-motion * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+html[data-theme-transitioning="true"] body {
+  transition: background-color 180ms ease, color 180ms ease;
+}
 
-  /* High Contrast Mode */
-  .high-contrast {
-    filter: contrast(150%);
-  }
+html[data-theme-transitioning="true"] main::before,
+html[data-theme-transitioning="true"] main::after {
+  transition: opacity 180ms ease, transform 180ms ease;
+}
 
-  .high-contrast * {
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.8);
-  }
+::selection {
+  background: color-mix(in srgb, var(--color-primary) 30%, transparent);
+  color: var(--color-text);
+}
 
-  /* Theme Variables - Updated for comprehensive theme support */
-  [data-theme="light"] {
-    --bg-primary: #ffffff;
-    --bg-secondary: #f9fafb;
-    --bg-surface: #f8fafc;
-    --text-primary: #1f2937;
-    --text-secondary: #6b7280;
-    --color-primary: #8b5cf6;
-    --color-secondary: #6366f1;
-    --color-accent: #d946ef;
+@keyframes pulse-fast {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
   }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.06);
+  }
+}
 
-  [data-theme="dark"] {
-    --bg-primary: #000000;
-    --bg-secondary: #1f2937;
-    --bg-surface: #1a1a2e;
-    --text-primary: #ffffff;
-    --text-secondary: #d1d5db;
-    --color-primary: #8b5cf6;
-    --color-secondary: #6366f1;
-    --color-accent: #d946ef;
-  }
+.animate-pulse-fast {
+  animation: pulse-fast 6s ease-in-out infinite;
+}
 
-  [data-theme="cyberpunk"] {
-    --bg-primary: #0a0a0a;
-    --bg-secondary: #1a0d1a;
-    --bg-surface: #1a0d1a;
-    --text-primary: #ffffff;
-    --text-secondary: #ff0080;
-    --color-primary: #ff0080;
-    --color-secondary: #00ffff;
-    --color-accent: #ffff00;
-  }
+.reduced-motion * {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
 
-  [data-theme="ocean"] {
-    --bg-primary: #0f172a;
-    --bg-secondary: #164e63;
-    --bg-surface: #1e293b;
-    --text-primary: #ffffff;
-    --text-secondary: #bae6fd;
-    --color-primary: #0ea5e9;
-    --color-secondary: #0284c7;
-    --color-accent: #06b6d4;
-  }
+.high-contrast {
+  filter: contrast(150%);
+}
 
-  [data-theme="forest"] {
-    --bg-primary: #0f172a;
-    --bg-secondary: #14532d;
-    --bg-surface: #1e293b;
-    --text-primary: #ffffff;
-    --text-secondary: #bbf7d0;
-    --color-primary: #22c55e;
-    --color-secondary: #16a34a;
-    --color-accent: #84cc16;
-  }
+[data-theme="light"] {
+  --bg-grid-color: rgba(15, 23, 42, 0.08);
+}
 
-  /* Custom Scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
+[data-theme="dark"] {
+  --bg-grid-color: rgba(148, 163, 184, 0.1);
+}
 
-  ::-webkit-scrollbar-track {
-    background: #1f2937;
-  }
+[data-theme="cyberpunk"] {
+  --bg-grid-color: rgba(255, 255, 255, 0.08);
+}
 
-  ::-webkit-scrollbar-thumb {
-    background: #6366f1;
-    border-radius: 4px;
-  }
+[data-theme="ocean"] {
+  --bg-grid-color: rgba(125, 211, 252, 0.12);
+}
 
-  ::-webkit-scrollbar-thumb:hover {
-    background: #4f46e5;
-  }
+[data-theme="forest"] {
+  --bg-grid-color: rgba(187, 247, 208, 0.1);
+}
 
-  /* Focus styles for accessibility */
-  .focus-visible {
-    outline: 2px solid #6366f1;
-    outline-offset: 2px;
-  }
+::-webkit-scrollbar {
+  width: 10px;
+}
 
-  /* Gradient text */
-  .gradient-text {
-    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
+::-webkit-scrollbar-track {
+  background: color-mix(in srgb, var(--color-surface) 80%, #000 20%);
+}
 
-  /* Portrait image containers */
-  .portrait-container {
-    aspect-ratio: 3/4;
-    min-height: 300px;
-  }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--color-primary), var(--color-secondary));
+  border-radius: 999px;
+}
 
-  @media (max-width: 768px) {
-    .portrait-container {
-      aspect-ratio: 4/5;
-      min-height: 280px;
-    }
-  }
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(var(--color-secondary), var(--color-accent));
+}
 
-  /* Cursor trail hiding for touch devices */
-  @media (hover: none) and (pointer: coarse) {
-    #cursor-trail {
-      display: none;
-    }
-  }
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
 
-  /* Smooth transitions for theme changes */
-  * {
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-  }
+* {
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
 
-  /* Override default cursor for better custom cursor visibility */
-  @media (min-width: 1024px) {
-    body {
-      cursor: none;
-    }
-    
-    a, button, [role="button"] {
-      cursor: none;
-    }
-    
-    /* Hover states for interactive elements */
-    a:hover, button:hover, [role="button"]:hover {
-      transform: scale(1.02);
-      transition: transform 0.2s ease;
-    }
+@media (max-width: 768px) {
+  main::after {
+    background-size: 26px 26px;
+    opacity: 0.12;
   }
-
-  /* Custom cursor trail styles */
-  .cursor-trail-dot {
-    backdrop-filter: blur(1px);
-    mix-blend-mode: difference;
-  }
-
-  .cursor-ring {
-    backdrop-filter: blur(2px);
-    mix-blend-mode: screen;
-  }
-
-  /* High contrast mode support */
-  @media (prefers-contrast: high) {
-    .cursor-trail-dot,
-    .cursor-ring {
-      mix-blend-mode: normal;
-      filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.8));
-    }
-  }
+}

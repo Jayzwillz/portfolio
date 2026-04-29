@@ -13,13 +13,14 @@ import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import ThemeControlPanel from "./components/ThemeControlPanel";
 import CursorTrail from "./components/CursorTrail";
+import PortfolioAI from "./components/PortfolioAI";
 
 function AppContent() {
   const { theme } = useTheme();
   
   return (
     <div 
-      className="min-h-screen font-sans transition-colors duration-300"
+      className="min-h-screen transition-colors duration-300"
       style={{
         backgroundColor: theme.colors.background,
         color: theme.colors.text
@@ -27,7 +28,7 @@ function AppContent() {
     >
       <CursorTrail />
       <Navbar />
-      <main className="pt-20 max-w-7xl mx-auto">
+      <main className="pt-24 overflow-x-hidden">
         <Hero />
         <About />
         <Services />
@@ -39,6 +40,7 @@ function AppContent() {
         <Footer />
       </main>
       <ScrollToTop />
+      <PortfolioAI />
       <ThemeControlPanel />
     </div>
   );

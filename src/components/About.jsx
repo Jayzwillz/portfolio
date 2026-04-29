@@ -15,8 +15,14 @@ const About = () => {
         color: theme.colors.text
       }}
     >
-      <div className="absolute -top-20 left-[-10%] w-[300px] h-[300px] bg-indigo-600 opacity-10 rounded-full blur-[120px]" />
-      <div className="absolute bottom-[-20%] right-[-10%] w-[400px] h-[400px] bg-pink-600 opacity-10 rounded-full blur-[180px]" />
+      <div
+        className="absolute -top-20 left-[-10%] w-[300px] h-[300px] opacity-20 rounded-full blur-[120px]"
+        style={{ backgroundColor: theme.colors.secondary }}
+      />
+      <div
+        className="absolute bottom-[-20%] right-[-10%] w-[400px] h-[400px] opacity-20 rounded-full blur-[180px]"
+        style={{ backgroundColor: theme.colors.accent }}
+      />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         <motion.h2
@@ -59,8 +65,13 @@ const About = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.3, delay: 0.2 }}
           >
-            <div className="relative w-72 h-96 md:w-80 md:h-[28rem] rounded-2xl overflow-hidden shadow-2xl border-4 bg-gradient-to-br from-purple-900/20 to-indigo-900/20"
-                 style={{ borderColor: theme.colors.primary }}>
+            <div
+              className="relative w-72 h-96 md:w-80 md:h-[28rem] rounded-2xl overflow-hidden shadow-2xl border-4"
+              style={{
+                borderColor: theme.colors.primary,
+                background: `linear-gradient(145deg, ${theme.colors.surface}, ${theme.colors.background})`,
+              }}
+            >
               <img
                 src={aboutImg}
                 alt="Portrait of Jah'swill Uchechi Emmanuel, FullStack Software Engineer"

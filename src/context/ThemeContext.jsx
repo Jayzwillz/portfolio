@@ -12,31 +12,31 @@ export const useTheme = () => {
 
 export const themes = {
   dark: {
-    name: 'Dark',
+    name: 'Midnight Tide',
     colors: {
-      primary: '#8b5cf6',
-      secondary: '#6366f1',
-      accent: '#d946ef',
-      background: '#000000',
-      surface: '#1a1a2e',
-      text: '#ffffff',
-      textSecondary: '#d1d5db'
+      primary: '#67e8f9',
+      secondary: '#14b8a6',
+      accent: '#f59e0b',
+      background: '#0b1020',
+      surface: '#111933',
+      text: '#f8fafc',
+      textSecondary: '#c7d2fe'
     }
   },
   light: {
-    name: 'Light',
+    name: 'Porcelain',
     colors: {
-      primary: '#8b5cf6',
-      secondary: '#6366f1',
-      accent: '#d946ef',
-      background: '#ffffff',
-      surface: '#f8fafc',
-      text: '#1f2937',
-      textSecondary: '#6b7280'
+      primary: '#0f766e',
+      secondary: '#2563eb',
+      accent: '#ea580c',
+      background: '#f8fafc',
+      surface: '#eef2ff',
+      text: '#0f172a',
+      textSecondary: '#475569'
     }
   },
   cyberpunk: {
-    name: 'Cyberpunk',
+    name: 'Neon Pulse',
     colors: {
       primary: '#ff0080',
       secondary: '#00ffff',
@@ -48,26 +48,26 @@ export const themes = {
     }
   },
   ocean: {
-    name: 'Ocean',
+    name: 'Atlantic',
     colors: {
-      primary: '#0ea5e9',
-      secondary: '#0284c7',
-      accent: '#06b6d4',
-      background: '#0f172a',
-      surface: '#1e293b',
-      text: '#ffffff',
+      primary: '#38bdf8',
+      secondary: '#0ea5e9',
+      accent: '#2dd4bf',
+      background: '#082f49',
+      surface: '#0c4a6e',
+      text: '#f0f9ff',
       textSecondary: '#bae6fd'
     }
   },
   forest: {
-    name: 'Forest',
+    name: 'Canopy',
     colors: {
       primary: '#22c55e',
       secondary: '#16a34a',
-      accent: '#84cc16',
-      background: '#0f172a',
-      surface: '#1e293b',
-      text: '#ffffff',
+      accent: '#eab308',
+      background: '#052e16',
+      surface: '#14532d',
+      text: '#f0fdf4',
       textSecondary: '#bbf7d0'
     }
   }
@@ -78,6 +78,7 @@ export const ThemeProvider = ({ children }) => {
   const [fontSize, setFontSize] = useState('normal');
   const [highContrast, setHighContrast] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   // Load saved preferences
   useEffect(() => {
@@ -104,6 +105,12 @@ export const ThemeProvider = ({ children }) => {
   useEffect(() => {
     const theme = themes[currentTheme];
     const root = document.documentElement;
+    setIsTransitioning(true);
+    root.setAttribute('data-theme-transitioning', 'true');
+    const transitionTimeout = window.setTimeout(() => {
+      setIsTransitioning(false);
+      root.removeAttribute('data-theme-transitioning');
+    }, 220);
     
     // Set CSS custom properties
     Object.entries(theme.colors).forEach(([key, value]) => {
@@ -115,6 +122,10 @@ export const ThemeProvider = ({ children }) => {
     
     // Save to localStorage
     localStorage.setItem('portfolio-theme', currentTheme);
+
+    return () => {
+      window.clearTimeout(transitionTimeout);
+    };
   }, [currentTheme]);
 
   // Apply accessibility settings
@@ -159,6 +170,7 @@ export const ThemeProvider = ({ children }) => {
     highContrast,
     setHighContrast,
     reducedMotion,
+    isTransitioning,
     setReducedMotion,
     theme: themes[currentTheme]
   };

@@ -23,7 +23,7 @@ const Footer = () => {
 
   return (
     <motion.footer
-      className="py-12 relative overflow-hidden transition-colors duration-300"
+      className="py-14 relative overflow-hidden transition-colors duration-300"
       style={{
         backgroundColor: theme.colors.background,
         color: theme.colors.textSecondary
@@ -41,11 +41,11 @@ const Footer = () => {
         }} 
       />
       
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           {/* About Section */}
           <div className="text-center md:text-left">
-            <h3 className="text-xl font-semibold mb-4" style={{ color: theme.colors.primary }}>
+            <h3 className="text-xl font-black mb-4 tracking-tight" style={{ color: theme.colors.primary }}>
               Jah'swill Uchechi Emmanuel
             </h3>
             <p className="text-sm leading-relaxed mb-4">
@@ -62,9 +62,9 @@ const Footer = () => {
                   aria-label={social.label}
                   className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
                   style={{
-                    backgroundColor: theme.colors.surface,
+                    backgroundColor: `${theme.colors.surface}CA`,
                     color: theme.colors.text,
-                    border: `1px solid ${theme.colors.primary}`
+                    border: `1px solid ${theme.colors.primary}66`
                   }}
                 >
                   {social.icon}
@@ -81,7 +81,7 @@ const Footer = () => {
                 <li key={index}>
                   <a
                     href={link.href}
-                    className="text-sm transition-colors duration-300"
+                    className="text-sm transition-colors duration-300 font-medium"
                     style={{ 
                       color: theme.colors.textSecondary,
                       ':hover': { color: theme.colors.primary }

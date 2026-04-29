@@ -57,8 +57,14 @@ const Services = () => {
       }}
     >
       {/* Background decorations */}
-      <div className="absolute -top-20 right-[-10%] w-[300px] h-[300px] bg-blue-600 opacity-10 rounded-full blur-[120px]" />
-      <div className="absolute bottom-[-20%] left-[-10%] w-[400px] h-[400px] bg-purple-600 opacity-10 rounded-full blur-[180px]" />
+      <div
+        className="absolute -top-20 right-[-10%] w-[300px] h-[300px] opacity-20 rounded-full blur-[120px]"
+        style={{ backgroundColor: theme.colors.secondary }}
+      />
+      <div
+        className="absolute bottom-[-20%] left-[-10%] w-[400px] h-[400px] opacity-20 rounded-full blur-[180px]"
+        style={{ backgroundColor: theme.colors.accent }}
+      />
       
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         <motion.h2

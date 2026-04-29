@@ -22,6 +22,40 @@ import Vue_Todo_App from "/Vue Todo App.png";
 
 const projects = [
   {
+    title: "Clipit",
+    description:
+      "Clipit is an AI movie identification app that analyzes short video clips to find the movie title, show story context, suggest similar titles, and surface where to watch. It uses an AI-powered detection flow with TMDB-backed movie metadata.",
+    tech: [
+      "React",
+      "Supabase",
+      "Edge Functions",
+      "AI Inference",
+      "TMDB API",
+      "Tailwind",
+    ],
+    image: "https://official-clipit.netlify.app/images/clipit-logo.png",
+    link: "https://official-clipit.netlify.app/",
+    repo: "https://github.com/Jayzwillz/Clipit",
+    category: "fullstack",
+  },
+  {
+    title: "FloodSense",
+    description:
+      "FloodSense is an AI-driven flood monitoring and early warning platform for flood-prone communities. It provides localized alerts, 24h/48h/7-day risk predictions, emergency guidance, and multi-channel notifications including SMS, WhatsApp, push, and voice.",
+    tech: [
+      "React",
+      "AI/ML",
+      "Weather APIs",
+      "Risk Scoring",
+      "Realtime Alerts",
+      "Community Dashboard",
+    ],
+    image: "https://official-floodsense.netlify.app/images/logo.png",
+    link: "https://official-floodsense.netlify.app/",
+    repo: "https://github.com/Jayzwillz/floodsense-frontend",
+    category: "fullstack",
+  },
+  {
     title: "XZMovies App",
     description:
       "XZMovies is an AI-powered movie discovery app built with React, Node.js, and MongoDB. It lets users explore, search, and filter movies, view detailed info, and manage a watchlist—all with a sleek, responsive UI and TMDB API integration.",
@@ -192,15 +226,19 @@ const Projects = () => {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <motion.h2
           id="projects-heading"
-          className="text-3xl sm:text-4xl font-extrabold text-center mb-8"
+          className="text-3xl sm:text-4xl font-extrabold text-center mb-4"
           style={{ color: theme.colors.primary }}
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          My Projects
+          Featured Projects
         </motion.h2>
+
+        <p className="max-w-3xl mx-auto text-center mb-12" style={{ color: theme.colors.textSecondary }}>
+          A curated selection of products I have designed and built across AI tooling, fullstack platforms, and frontend systems.
+        </p>
 
         {/* Filter Buttons */}
         <motion.div
@@ -226,7 +264,7 @@ const Projects = () => {
           ))}
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8">
           {filteredProjects.map((project, index) => (
             <motion.article
               key={`${activeFilter}-${index}`}
@@ -234,10 +272,10 @@ const Projects = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="flex flex-col rounded-lg shadow-lg overflow-hidden hover:scale-[1.02] transition-transform duration-300 border"
+              className="flex flex-col rounded-2xl shadow-lg overflow-hidden hover:scale-[1.02] transition-transform duration-300 border min-h-full"
               style={{
-                backgroundColor: theme.colors.background,
-                borderColor: theme.colors.primary
+                backgroundColor: `${theme.colors.background}DD`,
+                borderColor: `${theme.colors.primary}55`
               }}
               aria-labelledby={`project-title-${index}`}
             >
@@ -245,7 +283,7 @@ const Projects = () => {
                 <img
                   src={project.image}
                   alt={`${project.title} preview`}
-                  className="w-full h-48 object-cover object-center"
+                  className="w-full h-44 sm:h-48 object-cover object-center"
                   loading="lazy"
                 />
                 <span
@@ -258,7 +296,7 @@ const Projects = () => {
                 </span>
               </div>
 
-              <div className="flex flex-col justify-between flex-grow p-6 space-y-4">
+              <div className="flex flex-col justify-between flex-grow p-5 sm:p-6 space-y-4">
                 <div>
                   <h3
                     id={`project-title-${index}`}
@@ -267,18 +305,23 @@ const Projects = () => {
                   >
                     {project.title}
                   </h3>
-                  <p className="text-sm leading-relaxed min-h-[4rem]" style={{ color: theme.colors.textSecondary }}>
+                  <p className="text-sm leading-relaxed min-h-[4rem] sm:min-h-[5rem]" style={{ color: theme.colors.textSecondary }}>
                     {project.description}
                   </p>
 
                   <ul
-                    className="flex flex-wrap gap-2 text-xs text-gray-400 mt-4"
+                    className="flex flex-wrap gap-2 text-xs mt-4"
                     aria-label="Technologies used"
                   >
                     {project.tech.map((tech, i) => (
                       <li
                         key={i}
-                        className="bg-gray-800 px-2 py-1 rounded-full border border-purple-500/30"
+                        className="px-2 py-1 rounded-full border"
+                        style={{
+                          backgroundColor: `${theme.colors.surface}C7`,
+                          borderColor: `${theme.colors.primary}30`,
+                          color: theme.colors.textSecondary,
+                        }}
                       >
                         {tech}
                       </li>
@@ -286,27 +329,38 @@ const Projects = () => {
                   </ul>
                 </div>
 
-                <div className="flex flex-wrap gap-3 pt-4">
+                <div className="flex flex-col sm:flex-row flex-wrap gap-3 pt-4">
                   {project.link !== "#" && (
                     <a
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`Live demo of ${project.title}`}
-                      className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-purple-600 rounded-lg hover:bg-purple-700 transition-colors"
+                      className="flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-lg transition-colors w-full sm:w-auto"
+                      style={{
+                        background: `linear-gradient(135deg, ${theme.colors.primary}, ${theme.colors.secondary})`,
+                        color: theme.colors.background,
+                      }}
                     >
                       Live Demo <FaExternalLinkAlt size={12} />
                     </a>
                   )}
-                  <a
-                    href={project.repo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`GitHub repository of ${project.title}`}
-                    className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-gray-700 rounded-lg hover:bg-gray-600 transition-colors"
-                  >
-                    GitHub <FaGithub size={14} />
-                  </a>
+                  {project.repo && project.repo !== "#" && (
+                    <a
+                      href={project.repo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`GitHub repository of ${project.title}`}
+                      className="flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-lg transition-colors border"
+                      style={{
+                        color: theme.colors.text,
+                        backgroundColor: `${theme.colors.surface}C7`,
+                        borderColor: `${theme.colors.primary}40`,
+                      }}
+                    >
+                      GitHub <FaGithub size={14} />
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.article>

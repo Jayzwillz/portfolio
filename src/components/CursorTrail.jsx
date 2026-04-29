@@ -30,7 +30,7 @@ const CursorTrail = () => {
         timestamp: Date.now()
       };
       
-      setTrails(prev => [...prev, newTrail].slice(-12)); // Keep only last 12 points for better performance
+      setTrails(prev => [...prev, newTrail].slice(-6));
     };
 
     const handleMouseLeave = () => {
@@ -49,7 +49,7 @@ const CursorTrail = () => {
     // Clean up old trails
     const interval = setInterval(() => {
       const now = Date.now();
-      setTrails(prev => prev.filter(trail => now - trail.timestamp < 800));
+      setTrails(prev => prev.filter(trail => now - trail.timestamp < 500));
     }, 50);
 
     return () => {
@@ -71,25 +71,25 @@ const CursorTrail = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-[9999] hidden lg:block">
+    <div className="fixed inset-0 pointer-events-none z-[9999] hidden lg:block opacity-80">
       {trails.map((trail, index) => {
         const age = Date.now() - trail.timestamp;
-        const opacity = Math.max(0, 1 - age / 800);
-        const scale = Math.max(0.2, 1 - age / 800);
+        const opacity = Math.max(0, 1 - age / 500);
+        const scale = Math.max(0.35, 1 - age / 500);
         
         return (
           <motion.div
             key={trail.id}
             className="absolute rounded-full cursor-trail-dot"
             style={{
-              width: isHovering ? '2px' : '1.5px',
-              height: isHovering ? '2px' : '1.5px',
-              left: trail.x - (isHovering ? 1 : 0.75),
-              top: trail.y - (isHovering ? 1 : 0.75),
-              opacity: opacity * 0.9,
+              width: isHovering ? '2px' : '1.25px',
+              height: isHovering ? '2px' : '1.25px',
+              left: trail.x - (isHovering ? 1 : 0.625),
+              top: trail.y - (isHovering ? 1 : 0.625),
+              opacity: opacity * 0.75,
               backgroundColor: theme.colors.primary,
-              boxShadow: `0 0 ${isHovering ? '12px' : '8px'} ${theme.colors.primary}40, 0 0 ${isHovering ? '20px' : '16px'} ${theme.colors.primary}20`,
-              border: `1px solid ${theme.colors.primary}80`
+              boxShadow: `0 0 ${isHovering ? '10px' : '6px'} ${theme.colors.primary}35, 0 0 ${isHovering ? '18px' : '10px'} ${theme.colors.primary}18`,
+              border: `1px solid ${theme.colors.primary}70`
             }}
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale, opacity: opacity * 0.9 }}
@@ -102,13 +102,13 @@ const CursorTrail = () => {
       <motion.div
         className="absolute border-2 rounded-full pointer-events-none cursor-ring"
         style={{
-          width: isHovering ? '48px' : '32px',
-          height: isHovering ? '48px' : '32px',
-          left: mousePosition.x - (isHovering ? 24 : 16),
-          top: mousePosition.y - (isHovering ? 24 : 16),
+          width: isHovering ? '42px' : '30px',
+          height: isHovering ? '42px' : '30px',
+          left: mousePosition.x - (isHovering ? 21 : 15),
+          top: mousePosition.y - (isHovering ? 21 : 15),
           borderColor: theme.colors.primary,
-          boxShadow: `0 0 ${isHovering ? '20px' : '12px'} ${theme.colors.primary}60, 0 0 ${isHovering ? '40px' : '24px'} ${theme.colors.primary}30, inset 0 0 12px ${theme.colors.primary}20`,
-          backgroundColor: `${theme.colors.primary}${isHovering ? '15' : '10'}`
+          boxShadow: `0 0 ${isHovering ? '16px' : '10px'} ${theme.colors.primary}45, 0 0 ${isHovering ? '28px' : '18px'} ${theme.colors.primary}24, inset 0 0 10px ${theme.colors.primary}18`,
+          backgroundColor: `${theme.colors.primary}${isHovering ? '12' : '08'}`
         }}
         initial={{ scale: 0, opacity: 0 }}
         animate={{ 
@@ -129,12 +129,12 @@ const CursorTrail = () => {
       <motion.div
         className="absolute rounded-full pointer-events-none cursor-trail-dot"
         style={{
-          width: isHovering ? '6px' : '3px',
-          height: isHovering ? '6px' : '3px',
-          left: mousePosition.x - (isHovering ? 3 : 1.5),
-          top: mousePosition.y - (isHovering ? 3 : 1.5),
+          width: isHovering ? '5px' : '3px',
+          height: isHovering ? '5px' : '3px',
+          left: mousePosition.x - (isHovering ? 2.5 : 1.5),
+          top: mousePosition.y - (isHovering ? 2.5 : 1.5),
           backgroundColor: theme.colors.primary,
-          boxShadow: `0 0 ${isHovering ? '12px' : '8px'} ${theme.colors.primary}80, 0 0 ${isHovering ? '24px' : '16px'} ${theme.colors.primary}40`,
+          boxShadow: `0 0 ${isHovering ? '10px' : '6px'} ${theme.colors.primary}70, 0 0 ${isHovering ? '18px' : '12px'} ${theme.colors.primary}35`,
           border: `1px solid ${theme.colors.background}40`
         }}
         initial={{ scale: 0 }}

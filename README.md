@@ -1,12 +1,14 @@
-# React + Vite
+# Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a Vite + React portfolio for Jah'swill Uchechi Emmanuel.
 
-Currently, two official plugins are available:
+## AI Assistant
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The site includes a floating AI assistant that can answer questions about Jah'swill and general software topics.
 
-## Expanding the ESLint configuration
+To enable the live model-backed experience on Netlify, set these environment variables:
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- `OPENAI_API_KEY`
+- `OPENAI_MODEL` optional, defaults to `gpt-4.1-mini`
+
+The assistant falls back to local portfolio knowledge if the API is unavailable, but the live AI experience requires the API key.

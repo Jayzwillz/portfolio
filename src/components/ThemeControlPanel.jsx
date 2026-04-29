@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   FaCog, FaPalette, FaTextHeight, FaEye, FaAccessibleIcon,
-  FaTimes, FaSun, FaMoon, FaAdjust
+  FaTimes, FaSun, FaMoon, FaAdjust, FaLayerGroup
 } from 'react-icons/fa';
 import { useTheme } from '../context/ThemeContext';
 
@@ -40,9 +40,9 @@ const ThemeControlPanel = () => {
     <>
       {/* Control Panel Toggle Button */}
       <motion.button
-        className="fixed top-1/2 right-0 transform -translate-y-1/2 z-50 p-3 rounded-l-lg shadow-lg transition-all duration-300"
+        className="fixed top-1/2 right-0 transform -translate-y-1/2 z-50 p-3 rounded-l-2xl shadow-lg transition-all duration-300"
         style={{
-          backgroundColor: theme.colors.primary,
+          background: `linear-gradient(135deg, ${theme.colors.primary}, ${theme.colors.secondary})`,
           color: theme.colors.background
         }}
         onClick={() => setIsOpen(!isOpen)}
@@ -68,10 +68,11 @@ const ThemeControlPanel = () => {
 
             {/* Panel */}
             <motion.div
-              className="fixed right-0 top-0 h-full w-80 border-l z-50 overflow-y-auto"
+              className="fixed right-0 top-0 h-full w-[22rem] border-l z-50 overflow-y-auto"
               style={{
-                backgroundColor: theme.colors.surface,
-                borderColor: theme.colors.primary
+                backgroundColor: `${theme.colors.surface}F2`,
+                borderColor: `${theme.colors.primary}44`,
+                boxShadow: `-20px 0 50px ${theme.colors.background}80`
               }}
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
@@ -98,18 +99,18 @@ const ThemeControlPanel = () => {
                 {/* Theme Selection */}
                 <div className="mb-8">
                   <h4 className="text-lg font-semibold mb-4 flex items-center gap-2" style={{ color: theme.colors.text }}>
-                    <FaPalette style={{ color: theme.colors.primary }} />
-                    Color Themes
+                    <FaLayerGroup style={{ color: theme.colors.primary }} />
+                    Theme Presets
                   </h4>
                   <div className="grid grid-cols-1 gap-3">
                     {Object.entries(themes).map(([themeKey, themeItem]) => (
                       <button
                         key={themeKey}
                         onClick={() => setCurrentTheme(themeKey)}
-                        className={`w-full p-3 rounded-lg border-2 transition-all duration-300`}
+                        className={`w-full p-3 rounded-2xl border-2 transition-all duration-300`}
                         style={{
-                          borderColor: currentTheme === themeKey ? theme.colors.primary : theme.colors.textSecondary,
-                          backgroundColor: currentTheme === themeKey ? `${theme.colors.primary}20` : 'transparent'
+                          borderColor: currentTheme === themeKey ? theme.colors.primary : `${theme.colors.textSecondary}55`,
+                          backgroundColor: currentTheme === themeKey ? `${theme.colors.primary}18` : `${theme.colors.background}66`
                         }}
                       >
                         <div className="flex items-center justify-between">
@@ -140,6 +141,11 @@ const ThemeControlPanel = () => {
                               }}
                             />
                           </div>
+                        </div>
+                        <div className="mt-3 grid grid-cols-3 gap-2">
+                          <span className="h-1.5 rounded-full" style={{ backgroundColor: themeItem.colors.primary }}></span>
+                          <span className="h-1.5 rounded-full" style={{ backgroundColor: themeItem.colors.secondary }}></span>
+                          <span className="h-1.5 rounded-full" style={{ backgroundColor: themeItem.colors.accent }}></span>
                         </div>
                       </button>
                     ))}
@@ -248,9 +254,9 @@ const ThemeControlPanel = () => {
                   }}
                   className="w-full p-3 rounded-lg transition-colors duration-300"
                   style={{
-                    backgroundColor: theme.colors.background,
+                    backgroundColor: `${theme.colors.background}88`,
                     color: theme.colors.text,
-                    border: `1px solid ${theme.colors.primary}`
+                    border: `1px solid ${theme.colors.primary}66`
                   }}
                 >
                   Reset to Defaults
